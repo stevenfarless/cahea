@@ -93,3 +93,5 @@ class CAHDeck {
     return { white, black };
   }
 }
+
+export { CAHDeck };
