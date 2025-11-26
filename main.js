@@ -1,3 +1,4 @@
+import { auth } from './firebase.js';
 import { app } from './firebase.js';
 import { CAHDeck } from './CAHDeck.js';
 import {
