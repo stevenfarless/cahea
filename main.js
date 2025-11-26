@@ -1,7 +1,19 @@
+import { app } from './firebase.js';
+import { CAHDeck } from './CAHDeck.js';
+import {
+    getAuth,
+    signInWithEmailAndPassword,
+    signOut,
+    onAuthStateChanged,
+    createUserWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
+
 const loginBtn = document.getElementById('loginBtn');
-const logoutBtn = document.getElementById('logoutBtn');
 const signupBtn = document.getElementById('signupBtn');
+const logoutBtn = document.getElementById('logoutBtn');
 const userGreeting = document.getElementById('userGreeting');
+const emailInput = document.getElementById('authEmail');
+const passwordInput = document.getElementById('authPassword');
 const drawWhite = document.getElementById('drawWhite');
 const drawBlack = document.getElementById('drawBlack');
 const drawResult = document.getElementById('drawResult');
@@ -9,8 +21,8 @@ const drawResult = document.getElementById('drawResult');
 const auth = getAuth(app);
 
 signupBtn.onclick = async () => {
-    const email = prompt("Enter email for sign up:");
-    const password = prompt("Choose a password:");
+    const email = emailInput.value.trim();
+    const password = passwordInput.value;
     try {
         await createUserWithEmailAndPassword(auth, email, password);
         alert("Sign up successful! You are now logged in.");
@@ -19,33 +31,43 @@ signupBtn.onclick = async () => {
     }
 };
 
+loginBtn.onclick = async () => {
+    const email = emailInput.value.trim();
+    const password = passwordInput.value;
+    try {
+        await signInWithEmailAndPassword(auth, email, password);
+        alert("Logged in!");
+    } catch (err) {
+        alert("Login failed: " + err.message);
+    }
+};
+
 logoutBtn.onclick = async () => {
     await signOut(auth);
     alert("Logged out!");
 };
 
-// Track auth state and update UI
 onAuthStateChanged(auth, user => {
     if (user) {
         loginBtn.style.display = "none";
         signupBtn.style.display = "none";
         logoutBtn.style.display = "";
         userGreeting.textContent = "Welcome, " + user.email;
+        emailInput.style.display = "none";
+        passwordInput.style.display = "none";
     } else {
         loginBtn.style.display = "";
         signupBtn.style.display = "";
         logoutBtn.style.display = "none";
         userGreeting.textContent = "";
+        emailInput.style.display = "";
+        passwordInput.style.display = "";
     }
 });
-
-
-console.log('Firebase app:', app);
 
 let allWhiteCards = [];
 let allBlackCards = [];
 
-// Load all cards from all packs into flat arrays
 async function loadAllCards() {
     const deck = await CAHDeck.fromCompact('cah-all-compact.json');
     deck.deck.forEach(pack => {
@@ -66,5 +88,4 @@ drawBlack.onclick = () => {
     drawResult.innerHTML = `<div class="card black">${card.text}</div>`;
 };
 
-// Load all cards when page loads
 loadAllCards();

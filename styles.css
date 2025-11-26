@@ -1,5 +1,5 @@
 body {
-    font-family: 'Inter', Arial, sans-serif;
+    font-family: Inter, Arial, sans-serif;
     margin: 0;
     padding: 0;
     background: #fafafa;
@@ -27,15 +27,21 @@ section {
     box-shadow: 0 2px 8px rgba(40, 40, 40, 0.04);
 }
 
-#auth {
+#authForm {
     display: flex;
-    gap: 1rem;
+    gap: 0.5rem;
     align-items: center;
-    justify-content: flex-start;
     margin-bottom: 1rem;
 }
 
-button {
+#authForm input {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #222;
+}
+
+#authForm button {
     font-size: 1rem;
     padding: 0.5rem 1.25rem;
     border: 1px solid #222;
@@ -47,36 +53,18 @@ button {
     transition: background 0.2s;
 }
 
-button:hover {
+#authForm button:hover {
     background: #e1e1e1;
 }
 
-ul#packList {
+nav ul {
     list-style-type: none;
-    padding: 0;
+    padding-left: 0;
+    margin: 0;
 }
 
-ul#packList li {
-    padding: 0.7rem;
-    border: 1px solid #ddd;
-    margin-bottom: 7px;
-    border-radius: 5px;
-    cursor: pointer;
-    background: #f3f3f3;
-    transition: background 0.2s, border 0.2s;
-}
-
-ul#packList li:hover {
-    background: #222;
-    color: #fff;
-    border-color: #222;
-}
-
-#cardArea {
+#drawResult {
     margin-top: 1rem;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
-    gap: 10px;
 }
 
 .card {
@@ -108,13 +96,8 @@ h3 {
     margin-bottom: 0.5rem;
 }
 
-/* Responsive layout improvements */
-@media (max-width: 900px) {
-    section {
-        max-width: 96vw;
-    }
-
-    #cardArea {
-        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    }
+footer {
+    text-align: center;
+    font-size: 0.95rem;
+    padding: 2rem 0 1.2rem 0;
 }
