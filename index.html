@@ -1,11 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
-    <title>Document</title>
+    <title>Cahea – Cards Against Humanity / Evil Apples Clone</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.ico">
 </head>
+
 <body>
-    <p>Hello</p>
+    <header>
+        <h1>Cahea</h1>
+        <p>
+            A free, FOSS Cards Against Humanity clone.<br>
+            Log in, choose a pack, and start playing!
+        </p>
+    </header>
+
+    <!-- Firebase Auth UI: will be wired up with JS -->
+    <section id="auth">
+        <button id="loginBtn">Log In</button>
+        <button id="logoutBtn" style="display:none;">Log Out</button>
+        <span id="userGreeting"></span>
+    </section>
+
+    <!-- Packs UI: will be filled in by JS -->
+    <section id="packs">
+        <h2>Available Packs</h2>
+        <ul id="packList"></ul>
+    </section>
+
+    <!-- Card display area for gameplay -->
+    <section id="cards">
+        <h2>Cards</h2>
+        <div id="cardArea"></div>
+    </section>
+
+    <script type="module" src="firebase.js"></script>
+    <script type="module" src="CAHDeck.js"></script>
+    <script type="module" src="main.js"></script>
+
 </body>
+
 </html>
