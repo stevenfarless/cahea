@@ -15,17 +15,17 @@
         <p>Play Cards Against Humanity Evil Apples Clone!</p>
     </header>
 
-    
     <section id="actionArea">
-        <button id="drawBlack">Draw Black Card</button>
-        <button id="drawWhite">Draw White Card</button>
-        
-        <div id="drawResultsContainer">
+        <div class="draw-row">
+            <button id="drawBlack" class="draw-btn">Draw Black Card</button>
+            <button id="drawWhite" class="draw-btn">Draw White Card</button>
+        </div>
+        <div class="card-row">
             <div id="drawBlackResult" class="card-container"></div>
             <div id="drawWhiteResult" class="card-container"></div>
         </div>
     </section>
-    
+
     <footer>
         <p>
             Cards Against Humanity content is CAH and used under CC BY-NC-SA 4.0.
@@ -33,7 +33,7 @@
             Project FOSS, credits in README.
         </p>
     </footer>
-    
+
     <section id="authFormArea">
         <form id="authForm" autocomplete="off" onsubmit="return false">
             <input type="email" id="authEmail" placeholder="Email" autocomplete="username" required />
@@ -44,7 +44,7 @@
             <span id="userGreeting"></span>
         </form>
     </section>
-    
+
     <script type="module" src="firebase.js"></script>
     <script type="module" src="CAHDeck.js"></script>
     <script type="module" src="main.js"></script>
