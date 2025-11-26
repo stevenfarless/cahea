@@ -3,12 +3,13 @@ import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.2/firebas
 import { getAuth } from 'https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js';
 
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_STORAGE_BUCKET",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyA6AT8yOulXOncTX2qg4Z0-aq_1X3-ewK0",
+  authDomain: "cahea-38948.firebaseapp.com",
+  databaseURL: "https://cahea-38948-default-rtdb.firebaseio.com",
+  projectId: "cahea-38948",
+  storageBucket: "cahea-38948.firebasestorage.app",
+  messagingSenderId: "703346033222",
+  appId: "1:703346033222:web:ce1fc872e96491c5ab8047"
 };
 
 // Initialize Firebase
