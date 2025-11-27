@@ -2,17 +2,17 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>C.A.H.E.A. - Cards Against Humanity Clone</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="favicon.ico">
+    <meta charset="UTF-8" />
+    <title>Cahea - Cards Against Humanity Clone</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="favicon.ico" />
 </head>
 
 <body>
     <header>
         <h1>C.A.H.E.A.</h1>
-        <p>Cards Against Humanity / Evil Apples Clone!</p>
+        <p>Cards Against Humanity Evil Apples Clone!</p>
     </header>
 
     <section id="actionArea">
@@ -20,33 +20,27 @@
             <button id="drawBlack" class="draw-btn">Draw Black Card</button>
             <button id="drawWhite" class="draw-btn">Draw White Card</button>
         </div>
-
         <div class="card-row">
             <div id="drawBlackResult" class="card-container"></div>
             <div id="drawWhiteResult" class="card-container"></div>
         </div>
-
-        <!-- FAVORITE SYSTEM -->
-        <div class="favorite-row">
-            <button id="favoriteBtn" class="favorite-btn" disabled>⭐ Save Combo</button>
-            <div id="favoritesList" class="favorites-container">
-                <div style="color: var(--dracula-comment);">Log in to save favorites</div>
-            </div>
-        </div>
     </section>
 
     <footer>
-        <p>Cards Against Humanity content is © CAH and used under CC BY-NC-SA 4.0.<br>Project FOSS, credits in README.
+        <p>
+            Cards Against Humanity content is CAH and used under CC BY-NC-SA 4.0.
+            <br />
+            Project FOSS, credits in README.
         </p>
     </footer>
 
     <section id="authFormArea">
         <form id="authForm" autocomplete="off" onsubmit="return false;">
-            <input type="email" id="authEmail" placeholder="Email" autocomplete="username" required>
-            <input type="password" id="authPassword" placeholder="Password" autocomplete="current-password" required>
+            <input type="email" id="authEmail" placeholder="Email" autocomplete="username" required />
+            <input type="password" id="authPassword" placeholder="Password" autocomplete="current-password" required />
             <button type="button" id="loginBtn">Log In</button>
             <button type="button" id="signupBtn">Sign Up</button>
-            <button type="button" id="logoutBtn" style="display: none;">Log Out</button>
+            <button type="button" id="logoutBtn" style="display:none">Log Out</button>
             <span id="userGreeting"></span>
         </form>
     </section>
