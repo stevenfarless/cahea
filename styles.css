@@ -19,7 +19,7 @@
 }
 
 body {
-    font-family: "Inter", "Segoe UI", Arial, sans-serif;
+    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
     margin: 0;
     padding: 0;
     background: var(--dracula-bg);
@@ -27,12 +27,14 @@ body {
     line-height: 1.6;
 }
 
+/* Header styles */
 header {
     background: var(--dracula-current-line);
     border-bottom: 2px solid var(--dracula-purple);
     text-align: center;
     padding: 0.5rem 1rem 1rem 1rem;
 }
+
 
 h1 {
     font-weight: 700;
@@ -143,7 +145,7 @@ section {
     flex-direction: row;
     justify-content: center;
     align-items: stretch;
-    gap: 2rem;
+    gap: .5rem;
     width: 100%;
     margin-bottom: 0.5rem;
 }
@@ -188,12 +190,18 @@ section {
     font-size: 1.1rem;
     word-break: break-word;
     transition: transform 0.2s ease;
+
+    /* Cards always fill parent container exactly - BASE RULE FIRST */
+    width: 100%;
+    max-width: none;
+    box-sizing: border-box;
 }
 
 .card:hover {
     transform: scale(1.02);
 }
 
+/* Color overrides - THESE MUST COME AFTER base width rules */
 .card.white {
     border-color: var(--dracula-cyan);
     background: var(--dracula-foreground);
@@ -227,7 +235,7 @@ footer p {
 }
 
 /* --- RESPONSIVE STYLES --- */
-@media (max-width: 700px) {
+/* @media (max-width: 700px) {
 
     .draw-row,
     .card-row {
@@ -241,4 +249,4 @@ footer p {
         width: 98vw;
         max-width: 340px;
     }
-}
+} */
