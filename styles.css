@@ -250,3 +250,70 @@ footer p {
         max-width: 340px;
     }
 } */
+
+/* --- FAVORITE SYSTEM --- */
+.favorite-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--dracula-selection);
+}
+
+.favorite-btn {
+    width: 320px;
+    /* Matches card containers */
+    padding: 0.8rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    background: linear-gradient(90deg, var(--dracula-orange) 0%, var(--dracula-yellow) 100%);
+    border: 2px solid var(--dracula-orange);
+    color: var(--dracula-bg);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.favorite-btn:not([disabled]):hover {
+    background: linear-gradient(90deg, var(--dracula-green) 0%, var(--dracula-orange) 100%);
+    border-color: var(--dracula-green);
+    transform: scale(1.02);
+}
+
+.favorite-btn:disabled {
+    background: var(--dracula-comment);
+    border-color: var(--dracula-comment);
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.favorites-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    max-width: 640px;
+    /* Matches 2x320px cards */
+    padding: 0.5rem;
+    background: rgba(189, 147, 249, 0.1);
+    border-radius: 8px;
+    border: 1px solid var(--dracula-purple);
+}
+
+.fav-combo {
+    background: var(--dracula-bg);
+    border: 2px solid var(--dracula-pink);
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    max-width: 300px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.fav-combo:hover {
+    background: var(--dracula-current-line);
+    transform: scale(1.05);
+}
