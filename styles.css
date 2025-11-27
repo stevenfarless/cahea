@@ -190,12 +190,18 @@ section {
     font-size: 1.1rem;
     word-break: break-word;
     transition: transform 0.2s ease;
+
+    /* Cards always fill parent container exactly - BASE RULE FIRST */
+    width: 100%;
+    max-width: none;
+    box-sizing: border-box;
 }
 
 .card:hover {
     transform: scale(1.02);
 }
 
+/* Color overrides - THESE MUST COME AFTER base width rules */
 .card.white {
     border-color: var(--dracula-cyan);
     background: var(--dracula-foreground);
