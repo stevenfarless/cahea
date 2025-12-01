@@ -42,17 +42,21 @@ toggleFavoritesView() {
 
     
     async handleAuthChange(user) {
-        if (user) {
-            this.favoritesManager = new FavoritesManager(user.uid);
-            await this.favoritesManager.loadFavorites();
-            this.favoritesSection.classList.add('show');
-            this.renderFavorites();
-        } else {
-            this.favoritesManager = null;
-            this.favoritesSection.classList.remove('show');
-        }
-        this.updateFavoriteButton();
+    if (user) {
+        this.favoritesManager = new FavoritesManager(user.uid);
+        await this.favoritesManager.loadFavorites();
+        this.favoritesSection.classList.add('show');
+        this.favoritesSection.classList.add('collapsed'); // Start collapsed
+        this.toggleFavoritesBtn.textContent = 'Show Favorites'; // Update button text
+        this.renderFavorites();
+    } else {
+        this.favoritesManager = null;
+        this.favoritesSection.classList.remove('show');
+        this.favoritesSection.classList.remove('collapsed'); // Clean up
     }
+    this.updateFavoriteButton();
+}
+
     
     drawBlackCard() {
         const card = this.cardManager.drawBlackCard();
