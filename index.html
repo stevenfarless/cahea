@@ -43,7 +43,9 @@
 
     <section id="authFormArea">
         <form id="authForm" autocomplete="off" onsubmit="return false">
-            <!-- Enter key login support -->
+            <!-- Error message display -->
+            <div id="authError" class="auth-error" style="display: none;"></div>
+
             <input type="email" id="authEmail" placeholder="Email" autocomplete="username" required />
             <input type="password" id="authPassword" placeholder="Password" autocomplete="current-password" required />
             <button type="button" id="loginBtn">Log In</button>
@@ -57,7 +59,7 @@
         <p>
             Cards Against Humanity content is CAH and used under CC BY-NC-SA 4.0.
             <br />
-            0.0.7
+            0.0.8
         </p>
     </footer>
 
