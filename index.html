@@ -2,36 +2,43 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <title>Cahea Cards Against Humanity Clone</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="icon" href="favicon.ico" />
+    <meta charset="UTF-8">
+    <title>Cahea - Cards Against Humanity Clone</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.ico">
 </head>
 
 <body>
     <header>
         <h1>C.A.H.E.A.</h1>
-        <p>Cards Against Humanity Evil Apples Cards!</p>
+        <p>Cards Against Humanity / Evil Apples Cards!</p>
     </header>
 
+    <!-- Main card drawing area -->
     <section id="actionArea">
+        <!-- Draw buttons -->
         <div class="draw-row">
             <button id="drawBlack" class="draw-btn">Draw Black Card</button>
             <button id="drawWhite" class="draw-btn">Draw White Card</button>
         </div>
+
+        <!-- Card display area -->
         <div class="card-row">
             <div id="drawBlackResult" class="card-container"></div>
             <div id="drawWhiteResult" class="card-container"></div>
         </div>
+
+        <!-- Favorite button (hidden until both cards drawn and user logged in) -->
         <div class="favorite-btn-row" style="display: none;">
             <button id="favoriteBtn">🤍 Save to Favorites</button>
         </div>
     </section>
 
+    <!-- Favorites section (only visible when logged in) -->
     <section id="favoritesSection">
         <div class="favorites-header">
-            <h2>❤️ Your Favorites</h2>
+            <h2>Your Favorites</h2>
             <button id="toggleFavoritesBtn" class="toggle-favorites-btn">Hide Favorites</button>
         </div>
         <div id="favoritesContainer"></div>
@@ -40,17 +47,22 @@
         </p>
     </section>
 
-
+    <!-- Authentication form -->
     <section id="authFormArea">
-        <form id="authForm" autocomplete="off" onsubmit="return false">
+        <form id="authForm" autocomplete="off" onsubmit="return false;">
             <!-- Error message display -->
             <div id="authError" class="auth-error" style="display: none;"></div>
 
+            <!-- Email and password inputs -->
             <input type="email" id="authEmail" placeholder="Email" autocomplete="username" required />
             <input type="password" id="authPassword" placeholder="Password" autocomplete="current-password" required />
+
+            <!-- Auth buttons -->
             <button type="button" id="loginBtn">Log In</button>
             <button type="button" id="signupBtn">Sign Up</button>
-            <button type="button" id="logoutBtn" style="display:none">Log Out</button>
+            <button type="button" id="logoutBtn" style="display:none;">Log Out</button>
+
+            <!-- User greeting (shown when logged in) -->
             <span id="userGreeting"></span>
         </form>
     </section>
@@ -58,11 +70,13 @@
     <footer>
         <p>
             Cards Against Humanity content is used under CC BY-NC-SA 4.0.
-            <br />
-            0.0.2
+            <br>
+            v0.0.3
         </p>
     </footer>
 
+    <!-- Load JavaScript modules -->
+    <!-- type="module" enables ES6 imports and defers execution until DOM ready -->
     <script type="module" src="firebase.js"></script>
     <script type="module" src="CAHDeck.js"></script>
     <script type="module" src="main.js"></script>
