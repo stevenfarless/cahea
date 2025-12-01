@@ -357,7 +357,7 @@ footer p {
 }
 
 #favoriteBtn {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     padding: 0.75rem 1.5rem;
     border-radius: 8px;
     border: 2px solid var(--dracula-purple);
@@ -366,13 +366,10 @@ footer p {
     cursor: pointer;
     transition: all 0.2s ease;
     font-weight: 500;
-    white-space: nowrap; /* Prevent text wrapping */
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem; /* Space between emoji and text */
+    white-space: nowrap;
 }
 
-#favoriteBtn:hover:not(:disabled) {
+#favoriteBtn:hover {
     background: var(--dracula-purple);
     transform: scale(1.05);
     box-shadow: 0 4px 12px rgba(147, 51, 234, 0.3);
@@ -382,14 +379,4 @@ footer p {
     opacity: 0.5;
     cursor: not-allowed;
     transform: none;
-}
-
-
-.heart-icon.filled {
-    background: var(--dracula-pink);
-    border-color: var(--dracula-pink);
-}
-
-.heart-icon.empty {
-    color: var(--dracula-comment);
 }

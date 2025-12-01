@@ -115,35 +115,35 @@ async function loadAllCards() {
 // Single favorite button handler - only shows when both cards drawn
 function updateFavoriteButton() {
     const favoriteBtnRow = document.querySelector('.favorite-btn-row');
-
+    
     // Hide button if not logged in or if either card missing
     if (!currentUser || !currentCombination.white || !currentCombination.black) {
         favoriteBtnRow.style.display = 'none';
         return;
     }
-
+    
     // Show button and update state
     favoriteBtnRow.style.display = 'flex';
     const isFav = favoritesManager.isFavorited(currentCombination.white, currentCombination.black);
     favoriteBtn.textContent = isFav ? '❤️ Saved!' : '🤍 Save to Favorites';
-    favoriteBtn.className = `heart-icon ${isFav ? 'filled' : 'empty'}`;
-
+    
     // Attach click handler
     favoriteBtn.onclick = async (e) => {
         e.stopPropagation();
         const isCurrentlyFav = favoritesManager.isFavorited(currentCombination.white, currentCombination.black);
-
+        
         if (isCurrentlyFav) {
             const favId = favoritesManager.getFavoriteId(currentCombination.white, currentCombination.black);
             await favoritesManager.removeFavoriteById(favId);
         } else {
             await favoritesManager.addFavorite(currentCombination.white, currentCombination.black);
         }
-
+        
         renderFavorites();
         updateFavoriteButton();
     };
 }
+
 
 
 // Draw handlers - clean cards, no buttons inside
