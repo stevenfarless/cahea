@@ -202,13 +202,13 @@ section {
 }
 
 /* Color overrides - THESE MUST COME AFTER base width rules */
-.card.white {
+.card-white {
     border-color: var(--dracula-cyan);
     background: var(--dracula-foreground);
     color: var(--dracula-bg);
 }
 
-.card.black {
+.card-black {
     border-color: var(--dracula-purple);
     background: var(--dracula-bg);
     color: var(--dracula-foreground);
@@ -296,17 +296,20 @@ footer p {
     word-break: break-word;
 }
 
-.favorite-card.white {
+.card-black {
+    /* Applies to both main cards and favorite cards */
+    background: var(--dracula-bg);
+    color: var(--dracula-foreground);
+    border-color: var(--dracula-purple);
+}
+
+.card-white {
+    /* Applies to both main cards and favorite cards */
     background: var(--dracula-foreground);
     color: var(--dracula-bg);
     border-color: var(--dracula-cyan);
 }
 
-.favorite-card.black {
-    background: var(--dracula-bg);
-    color: var(--dracula-foreground);
-    border-color: var(--dracula-purple);
-}
 
 .heart-icon {
     width: 2rem;
@@ -436,6 +439,7 @@ footer p {
         opacity: 0;
         transform: translateY(-10px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
