@@ -112,18 +112,20 @@ async function loadAllCards() {
     });
 }
 
-// Single favorite button handler - cleaner UX than buttons in cards
+// Single favorite button handler - only shows when both cards drawn
 function updateFavoriteButton() {
+    const favoriteBtnRow = document.querySelector('.favorite-btn-row');
+
+    // Hide button if not logged in or if either card missing
     if (!currentUser || !currentCombination.white || !currentCombination.black) {
-        favoriteBtn.disabled = true;
-        favoriteBtn.textContent = '🤍';
-        favoriteBtn.className = 'heart-icon empty';
+        favoriteBtnRow.style.display = 'none';
         return;
     }
 
+    // Show button and update state
+    favoriteBtnRow.style.display = 'flex';
     const isFav = favoritesManager.isFavorited(currentCombination.white, currentCombination.black);
-    favoriteBtn.disabled = false;
-    favoriteBtn.textContent = isFav ? '❤️' : '🤍';
+    favoriteBtn.textContent = isFav ? '❤️ Saved!' : '🤍 Save to Favorites';
     favoriteBtn.className = `heart-icon ${isFav ? 'filled' : 'empty'}`;
 
     // Attach click handler
@@ -142,6 +144,7 @@ function updateFavoriteButton() {
         updateFavoriteButton();
     };
 }
+
 
 // Draw handlers - clean cards, no buttons inside
 drawWhite.onclick = () => {
