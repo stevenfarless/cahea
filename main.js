@@ -19,6 +19,7 @@ const drawWhite = document.getElementById('drawWhite');
 const drawBlack = document.getElementById('drawBlack');
 const drawWhiteResult = document.getElementById('drawWhiteResult');
 const drawBlackResult = document.getElementById('drawBlackResult');
+const favoriteBtn = document.getElementById('favoriteBtn');
 const favoritesSection = document.getElementById('favoritesSection');
 const favoritesContainer = document.getElementById('favoritesContainer');
 const noFavoritesMsg = document.getElementById('noFavoritesMsg');
@@ -26,9 +27,8 @@ const noFavoritesMsg = document.getElementById('noFavoritesMsg');
 // Handle Enter keypress in auth inputs - triggers login if both fields filled
 window.handleAuthEnter = function (event) {
     if (event.key === 'Enter') {
-        // Only login if both fields have values (prevents partial submits)
         if (emailInput.value.trim() && passwordInput.value) {
-            loginBtn.click(); // Triggers existing loginBtn.onclick handler
+            loginBtn.click();
         }
     }
 };
@@ -73,7 +73,7 @@ logoutBtn.onclick = async () => {
     alert('Logged out!');
 };
 
-// Auth state listener - runs when user logs in/out
+// Auth state listener
 onAuthStateChanged(auth, async (user) => {
     if (user) {
         currentUser = user;
@@ -84,11 +84,11 @@ onAuthStateChanged(auth, async (user) => {
         emailInput.style.display = 'none';
         passwordInput.style.display = 'none';
 
-        // Initialize favorites system for this user
         favoritesManager = new FavoritesManager(user.uid);
         await favoritesManager.loadFavorites();
         favoritesSection.classList.add('show');
         renderFavorites();
+        updateFavoriteButton();
     } else {
         currentUser = null;
         favoritesManager = null;
@@ -99,6 +99,7 @@ onAuthStateChanged(auth, async (user) => {
         emailInput.style.display = '';
         passwordInput.style.display = '';
         favoritesSection.classList.remove('show');
+        updateFavoriteButton();
     }
 });
 
@@ -111,7 +112,38 @@ async function loadAllCards() {
     });
 }
 
-// Draw handlers
+// Single favorite button handler - cleaner UX than buttons in cards
+function updateFavoriteButton() {
+    if (!currentUser || !currentCombination.white || !currentCombination.black) {
+        favoriteBtn.disabled = true;
+        favoriteBtn.textContent = '🤍';
+        favoriteBtn.className = 'heart-icon empty';
+        return;
+    }
+
+    const isFav = favoritesManager.isFavorited(currentCombination.white, currentCombination.black);
+    favoriteBtn.disabled = false;
+    favoriteBtn.textContent = isFav ? '❤️' : '🤍';
+    favoriteBtn.className = `heart-icon ${isFav ? 'filled' : 'empty'}`;
+
+    // Attach click handler
+    favoriteBtn.onclick = async (e) => {
+        e.stopPropagation();
+        const isCurrentlyFav = favoritesManager.isFavorited(currentCombination.white, currentCombination.black);
+
+        if (isCurrentlyFav) {
+            const favId = favoritesManager.getFavoriteId(currentCombination.white, currentCombination.black);
+            await favoritesManager.removeFavoriteById(favId);
+        } else {
+            await favoritesManager.addFavorite(currentCombination.white, currentCombination.black);
+        }
+
+        renderFavorites();
+        updateFavoriteButton();
+    };
+}
+
+// Draw handlers - clean cards, no buttons inside
 drawWhite.onclick = () => {
     if (allWhiteCards.length === 0) return;
     const card = allWhiteCards[Math.floor(Math.random() * allWhiteCards.length)];
@@ -119,10 +151,9 @@ drawWhite.onclick = () => {
     drawWhiteResult.innerHTML = `
         <div class="card white">
             ${card.text}
-            ${currentUser ? '<button class="heart-icon empty" data-type="white">🤍</button>' : ''}
         </div>
     `;
-    updateHeartButtons();
+    updateFavoriteButton();
 };
 
 drawBlack.onclick = () => {
@@ -132,56 +163,10 @@ drawBlack.onclick = () => {
     drawBlackResult.innerHTML = `
         <div class="card black">
             ${card.text}
-            ${currentUser ? `<button class="heart-icon ${getFavoriteButtonState().black}" data-type="black">❤️</button>` : ''}
         </div>
     `;
-    updateHeartButtons();
+    updateFavoriteButton();
 };
-
-// Helper to determine heart button state (filled or empty)
-function getFavoriteButtonState() {
-    const isFav = currentCombination.white && currentCombination.black &&
-        favoritesManager.isFavorited(currentCombination.white, currentCombination.black);
-    return {
-        white: isFav ? 'filled' : 'empty',
-        black: isFav ? 'filled' : 'empty'
-    };
-}
-
-// Attach event listeners to heart buttons
-function updateHeartButtons() {
-    const hearts = document.querySelectorAll('.heart-icon');
-    hearts.forEach(btn => {
-        btn.onclick = async (e) => {
-            e.stopPropagation();
-            if (!currentCombination.white || !currentCombination.black) {
-                alert('Please draw both cards first!');
-                return;
-            }
-
-            const isFav = favoritesManager.isFavorited(currentCombination.white, currentCombination.black);
-
-            if (isFav) {
-                // Remove favorite
-                const favId = favoritesManager.getFavoriteId(currentCombination.white, currentCombination.black);
-                await favoritesManager.removeFavoriteById(favId);
-                btn.textContent = '🤍';
-                btn.classList.remove('filled');
-                btn.classList.add('empty');
-            } else {
-                // Add favorite
-                await favoritesManager.addFavorite(currentCombination.white, currentCombination.black);
-                hearts.forEach(h => {
-                    h.textContent = '❤️';
-                    h.classList.remove('empty');
-                    h.classList.add('filled');
-                });
-            }
-
-            renderFavorites();
-        };
-    });
-}
 
 // Render favorites list
 function renderFavorites() {
@@ -204,14 +189,12 @@ function renderFavorites() {
         `)
         .join('');
 
-    // Attach remove event listeners
     document.querySelectorAll('.remove-favorite-btn').forEach(btn => {
         btn.onclick = async () => {
             const favId = btn.getAttribute('data-id');
             await favoritesManager.removeFavoriteById(favId);
             renderFavorites();
-            // Update heart buttons if current combo was removed
-            updateHeartButtons();
+            updateFavoriteButton();
         };
     });
 }

@@ -347,3 +347,44 @@ footer p {
 .remove-favorite-btn:hover {
     background: var(--dracula-orange);
 }
+
+/* Favorite button row - positioned below cards */
+.favorite-btn-row {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    gap: 1rem;
+}
+
+#favoriteBtn {
+    font-size: 1.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    border: 2px solid var(--dracula-purple);
+    background: var(--dracula-bg);
+    color: var(--dracula-foreground);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: 500;
+}
+
+#favoriteBtn:hover:not(:disabled) {
+    background: var(--dracula-purple);
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(147, 51, 234, 0.3);
+}
+
+#favoriteBtn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.heart-icon.filled {
+    background: var(--dracula-pink);
+    border-color: var(--dracula-pink);
+}
+
+.heart-icon.empty {
+    color: var(--dracula-comment);
+}

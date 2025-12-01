@@ -24,6 +24,10 @@
             <div id="drawBlackResult" class="card-container"></div>
             <div id="drawWhiteResult" class="card-container"></div>
         </div>
+        <!-- Favorite button row - positioned below cards like original CAH layout -->
+        <div class="favorite-btn-row">
+            <button id="favoriteBtn" class="heart-icon empty" disabled>🤍 Save Combo</button>
+        </div>
     </section>
 
     <section id="favoritesSection">
@@ -36,7 +40,7 @@
 
     <section id="authFormArea">
         <form id="authForm" autocomplete="off" onsubmit="return false">
-            <!-- Added onkeypress handlers for Enter key login support -->
+            <!-- Enter key login support -->
             <input type="email" id="authEmail" placeholder="Email" autocomplete="username" required
                 onkeypress="handleAuthEnter(event)" />
             <input type="password" id="authPassword" placeholder="Password" autocomplete="current-password" required
@@ -52,7 +56,7 @@
         <p>
             Cards Against Humanity content is CAH and used under CC BY-NC-SA 4.0.
             <br />
-            0.0.2
+            0.0.1
         </p>
     </footer>
 
