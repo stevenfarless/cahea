@@ -33,7 +33,6 @@ window.handleAuthEnter = function (event) {
     }
 };
 
-
 // Global state
 let allWhiteCards = [];
 let allBlackCards = [];
@@ -118,12 +117,11 @@ drawWhite.onclick = () => {
     const card = allWhiteCards[Math.floor(Math.random() * allWhiteCards.length)];
     currentCombination.white = card.text;
     drawWhiteResult.innerHTML = `
-  <div class="card white">
-    ${card.text}
-    ${currentUser ? '<button class="heart-icon empty" data-type="white">🤍</button>' : ''}
-  </div>
-`;
-
+        <div class="card white">
+            ${card.text}
+            ${currentUser ? '<button class="heart-icon empty" data-type="white">🤍</button>' : ''}
+        </div>
+    `;
     updateHeartButtons();
 };
 
@@ -132,11 +130,11 @@ drawBlack.onclick = () => {
     const card = allBlackCards[Math.floor(Math.random() * allBlackCards.length)];
     currentCombination.black = card.text;
     drawBlackResult.innerHTML = `
-    <div class="card black">
-      ${card.text}
-      ${currentUser ? `<button class="heart-icon ${getFavoriteButtonState().black}" data-type="black"></button>` : ''}
-    </div>
-  `;
+        <div class="card black">
+            ${card.text}
+            ${currentUser ? `<button class="heart-icon ${getFavoriteButtonState().black}" data-type="black">❤️</button>` : ''}
+        </div>
+    `;
     updateHeartButtons();
 };
 
@@ -196,14 +194,14 @@ function renderFavorites() {
     noFavoritesMsg.style.display = 'none';
     favoritesContainer.innerHTML = favoritesManager.favorites
         .map(fav => `
-      <div class="favorite-item">
-        <div class="favorite-cards">
-        <div class="favorite-card black">${fav.black}</div>
-        <div class="favorite-card white">${fav.white}</div>
-        </div>
-        <button class="remove-favorite-btn" data-id="${fav.id}">Remove</button>
-      </div>
-    `)
+            <div class="favorite-item">
+                <div class="favorite-cards">
+                    <div class="favorite-card black">${fav.black}</div>
+                    <div class="favorite-card white">${fav.white}</div>
+                </div>
+                <button class="remove-favorite-btn" data-id="${fav.id}">Remove</button>
+            </div>
+        `)
         .join('');
 
     // Attach remove event listeners
