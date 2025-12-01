@@ -23,6 +23,17 @@ const favoritesSection = document.getElementById('favoritesSection');
 const favoritesContainer = document.getElementById('favoritesContainer');
 const noFavoritesMsg = document.getElementById('noFavoritesMsg');
 
+// Handle Enter keypress in auth inputs - triggers login if both fields filled
+window.handleAuthEnter = function (event) {
+    if (event.key === 'Enter') {
+        // Only login if both fields have values (prevents partial submits)
+        if (emailInput.value.trim() && passwordInput.value) {
+            loginBtn.click(); // Triggers existing loginBtn.onclick handler
+        }
+    }
+};
+
+
 // Global state
 let allWhiteCards = [];
 let allBlackCards = [];
